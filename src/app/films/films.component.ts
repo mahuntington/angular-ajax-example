@@ -9,13 +9,14 @@ import 'rxjs/add/operator/toPromise';
   styleUrls: ['./films.component.css']
 })
 export class FilmsComponent implements OnInit {
+  films;
 
   constructor(private http: Http) { }
 
   ngOnInit() {
     this.http.get('http://swapi.co/api/films/')
       .toPromise()
-      .then(response => console.log(response.json().results));
+      .then(response => this.films = response.json().results);
   }
 
 }
