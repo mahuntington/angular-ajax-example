@@ -13,4 +13,11 @@
         <dt>Producer</dt>
         <dd>{{selectedFilm.producer}}</dd>
     </dl>
+    <button (click)="showCharacters(selectedFilm)">View Characters</button>
+    <div *ngIf="selectedFilmCharacters.length > 0">
+        <h3>Chracters</h3>
+        <ul>
+            <li *ngFor="let character of selectedFilmCharacters">{{character.name}}</li>
+        </ul>
+    </div>
 </section>

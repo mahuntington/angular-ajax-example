@@ -11,11 +11,21 @@ import 'rxjs/add/operator/toPromise';
 export class FilmsComponent implements OnInit {
   films;
   selectedFilm;
+  selectedFilmCharacters = [];
 
   constructor(private http: Http) { }
 
   selectFilm(film){
       this.selectedFilm = film;
+      this.selectedFilmCharacters = [];
+  }
+
+  showCharacters(film){
+      film.characters.forEach((characterUrl) => {
+          this.http.get(characterUrl)
+            .toPromise()
+            .then(response => this.selectedFilmCharacters.push(response.json()));
+      });
   }
 
   ngOnInit() {
