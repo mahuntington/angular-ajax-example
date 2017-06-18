@@ -1,6 +1,16 @@
 <h2>List of Star Wars Films</h2>
 <ul>
-    <li *ngFor="let film of films">
+    <li *ngFor="let film of films" (click)="selectFilm(film)">
         {{film.title}}
     </li>
 </ul>
+<section *ngIf="selectedFilm">
+    <h2>Deatils for {{selectedFilm.title}}</h2>
+    <h3>Info</h3>
+    <dl>
+        <dt>Director</dt>
+        <dd>{{selectedFilm.director}}</dd>
+        <dt>Producer</dt>
+        <dd>{{selectedFilm.producer}}</dd>
+    </dl>
+</section>

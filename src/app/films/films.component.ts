@@ -10,8 +10,13 @@ import 'rxjs/add/operator/toPromise';
 })
 export class FilmsComponent implements OnInit {
   films;
+  selectedFilm;
 
   constructor(private http: Http) { }
+
+  selectFilm(film){
+      this.selectedFilm = film;
+  }
 
   ngOnInit() {
     this.http.get('http://swapi.co/api/films/')
