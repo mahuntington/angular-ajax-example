@@ -21,11 +21,13 @@ export class FilmsComponent implements OnInit {
   }
 
   showCharacters(film){
+      let promiseArray = [];
       film.characters.forEach((characterUrl) => {
-          this.http.get(characterUrl)
-            .toPromise()
-            .then(response => this.selectedFilmCharacters.push(response.json()));
+          promiseArray.push(this.http.get(characterUrl).toPromise());
       });
+      Promise.all(promiseArray).then(values => {
+          this.selectedFilmCharacters = values.map(value => value.json());
+      })
   }
 
   ngOnInit() {
